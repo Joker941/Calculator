@@ -1,4 +1,4 @@
-/* html, body {
+html, body {
     padding: 0;
     box-sizing: border-box;
 }
@@ -20,7 +20,7 @@ body {
 .calculator_name, .display_operate {
     display: flex;
     flex-grow: 4;
-} */
+}
 
 .display_operate {
     border: 1px solid red;
