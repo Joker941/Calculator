@@ -41,46 +41,25 @@ function operate (operator, number1, number2) {
 
 function updateDisplay (number) { 
 
-    document.querySelector(".display_operate").textContent = document.querySelector(".display_operate").textContent + number;
-
+    if (calcul === false) {
+    
+        document.querySelector(".display_operate").textContent = number;
+        calcul = true;
+    } else {
+    
+        document.querySelector(".display_operate").textContent = document.querySelector(".display_operate").textContent + number;
+    
+    }
 }
 
-let firstNumber, secondNumber, operator;
+let firstNumber, secondNumber, operator, resultat;
 
 const digit = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eigth", "nine", "adding", "substracting", "dividing", "multiplicating", "egal", "clear"];
 
 const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "clear"];
 
-// digit.forEach(function callback(value, index) {
+let calcul = false;
 
-//     document.querySelector("." + value).addEventListener("click", function () {
-
-//         if (value == "clear") { // fonctionne
-
-//             document.querySelector(".display_operate").textContent = "";
-
-//         } else if (value == "adding" || value == "substracting" || value == "dividing" || value == "multiplicating") {
-
-//             firstNumber = document.querySelector(".display_operate").textContent;
-//             console.log(firstNumber);
-//             updateDisplay (number[index]);
-
-//         } else if (value == "egal") {
-            
-//             display = document.querySelector(".display_operate").textContent;
-//             console.log(display);
-
-//         } else {
-//             updateDisplay (number[index]);
-//         }
-
-//     })
-
-// });
-
-// let display = document.querySelector(".display_operate").textContent;
-
-// console.log(" Nombre 1 : " + firstNumber);
 
 let one = document.querySelector(".one").addEventListener("click", function () { 
     updateDisplay (1);
@@ -120,31 +99,42 @@ let nine = document.querySelector(".nine").addEventListener("click", function ()
 
 let adding = document.querySelector(".adding").addEventListener("click", function () { 
     
-    firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-    operator = "+";
-    updateDisplay ("+");
+    if (calcul === true) {
+
+        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+        operator = "+";
+        updateDisplay ("+");
+    }
 
 });
 
 let substracting = document.querySelector(".substracting").addEventListener("click", function () { 
 
-    firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-    operator = "-";
-    updateDisplay ("-");
+    if (calcul === true) {
+
+        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+        operator = "-";
+        updateDisplay ("-");
+    }
 });
 
 let dividing = document.querySelector(".dividing").addEventListener("click", function () { 
 
-    firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-    operator = "/";
-    updateDisplay ("/");
+    if (calcul === true) {
+
+        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+        operator = "/";
+        updateDisplay ("/");
+    }
 });
 
 let multiplicating = document.querySelector(".multiplicating").addEventListener("click", function () { 
 
-    firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-    operator = "*";
-    updateDisplay ("*");
+    if (calcul === true) {
+        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+        operator = "*";
+        updateDisplay ("*");
+    }
 
 });
 
@@ -176,16 +166,17 @@ let egal = document.querySelector(".egal").addEventListener("click", function ()
         operatorPosition = findSecondNumber.indexOf("*");
         secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
         document.querySelector(".display_operate").textContent = operate("*", firstNumber, secondNumber);
-        
+
     }
-    
+    calcul = false;
 });
 
 let clear = document.querySelector(".clear").addEventListener("click", function () {
     firstNumber = "";
     secondNumber = "";
     operator = "";
-    document.querySelector(".display_operate").textContent = "";
+    calcul = false;
+    document.querySelector(".display_operate").textContent = "0";
  });
 
 
