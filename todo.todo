@@ -1,0 +1,4 @@
+Lors du clic sur un opérateur : 
+    Vérifier si un opérateur est déjà présent dans le display
+    Si non, on continue
+    Si oui, effectuer l'opération et affecter le résultat en tant que premier nombre

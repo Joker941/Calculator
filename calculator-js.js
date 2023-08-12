@@ -1,3 +1,5 @@
+/* DECLARATION DES FONCTIONS */
+
 function add (number1, number2) {
     return number1 + number2;
 }
@@ -52,52 +54,68 @@ function updateDisplay (number) {
     }
 }
 
+/* FIN DE DECLARATION DES FONCTIONS */
+
+/* DECLARATION DES VARIABLES */
+
 let firstNumber, secondNumber, operator, resultat;
 
-const digit = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eigth", "nine", "adding", "substracting", "dividing", "multiplicating", "egal", "clear"];
-
-const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "clear"];
 
 let calcul = false;
 
+let zero = document.querySelector(".zero"), one = document.querySelector(".one"), two = document.querySelector(".two"), three = document.querySelector, four = document.querySelector(".four"), five = document.querySelector(".five"), six = document.querySelector(".six"), seven = document.querySelector(".seven"), eight = document.querySelector(".eight"), nine = document.querySelector(".nine");
 
-let one = document.querySelector(".one").addEventListener("click", function () { 
+let adding = document.querySelector(".adding"), subtracting = document.querySelector(".subtracting"), multiplying = document.querySelector(".multiplying"), dividing = document.querySelector(".dividing");
+
+let egal = document.querySelector(".egal");
+
+let clear = document.querySelector(".clear");
+
+/* FIN DE DECLARATION DES VARIABLES */
+
+/* DECLARATION DES EVENT LISTENERS */
+
+zero.addEventListener("click", function () {
+    updateDisplay(0);
+});
+
+one.addEventListener("click", function () { 
     updateDisplay (1);
 });
 
-let two = document.querySelector(".two").addEventListener("click", function () { 
+two.addEventListener("click", function () { 
     updateDisplay (2);
 });
 
-let three = document.querySelector(".three").addEventListener("click", function () { 
+three.addEventListener("click", function () { 
     updateDisplay (3);
 });
 
-let four = document.querySelector(".four").addEventListener("click", function () { 
+four.addEventListener("click", function () { 
     updateDisplay (4);
 });
 
-let five = document.querySelector(".five").addEventListener("click", function () { 
+five.addEventListener("click", function () { 
     updateDisplay (5);
 });
 
-let six = document.querySelector(".six").addEventListener("click", function () { 
+six.addEventListener("click", function () { 
     updateDisplay (6);
 });
 
-let seven = document.querySelector(".seven").addEventListener("click", function () { 
+seven.addEventListener("click", function () { 
     updateDisplay (7);
 });
 
-let eight = document.querySelector(".eight").addEventListener("click", function () { 
+eight.addEventListener("click", function () { 
     updateDisplay (8);
 });
 
-let nine = document.querySelector(".nine").addEventListener("click", function () { 
+nine.addEventListener("click", function () { 
     updateDisplay (9);
 });
 
-let adding = document.querySelector(".adding").addEventListener("click", function () { 
+adding.addEventListener("click", function () { 
     
     if (calcul === true) {
 
@@ -108,7 +126,7 @@ let adding = document.querySelector(".adding").addEventListener("click", functio
 
 });
 
-let substracting = document.querySelector(".substracting").addEventListener("click", function () { 
+substracting.addEventListener("click", function () { 
 
     if (calcul === true) {
 
@@ -118,17 +136,17 @@ let substracting = document.querySelector(".substracting").addEventListener("cli
     }
 });
 
-let dividing = document.querySelector(".dividing").addEventListener("click", function () { 
+dividing.addEventListener("click", function () { 
 
     if (calcul === true) {
 
         firstNumber = parseInt(document.querySelector(".display_operate").textContent);
         operator = "/";
         updateDisplay ("/");
-    }
+        }
 });
 
-let multiplicating = document.querySelector(".multiplicating").addEventListener("click", function () { 
+multiplicating.addEventListener("click", function () { 
 
     if (calcul === true) {
         firstNumber = parseInt(document.querySelector(".display_operate").textContent);
@@ -138,7 +156,7 @@ let multiplicating = document.querySelector(".multiplicating").addEventListener(
 
 });
 
-let egal = document.querySelector(".egal").addEventListener("click", function () { 
+egal.addEventListener("click", function () { 
     
     let findSecondNumber = document.querySelector(".display_operate").textContent;
     let operatorPosition;
@@ -147,7 +165,7 @@ let egal = document.querySelector(".egal").addEventListener("click", function ()
 
         operatorPosition = findSecondNumber.indexOf("+");
         secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
-        document.querySelector(".display_operate").textContent = operate("*", firstNumber, secondNumber);
+        document.querySelector(".display_operate").textContent = operate("+", firstNumber, secondNumber);
 
     } else if (findSecondNumber.indexOf("-")!= -1) {
 
@@ -168,15 +186,18 @@ let egal = document.querySelector(".egal").addEventListener("click", function ()
         document.querySelector(".display_operate").textContent = operate("*", firstNumber, secondNumber);
 
     }
+
     calcul = false;
 });
 
-let clear = document.querySelector(".clear").addEventListener("click", function () {
+clear.addEventListener("click", function () {
     firstNumber = "";
     secondNumber = "";
     operator = "";
     calcul = false;
     document.querySelector(".display_operate").textContent = "0";
  });
+
+/* FIN DE DECLARATION DES EVENT LISTENERS */
 
 
