@@ -22,25 +22,58 @@ function operate (operator, number1, number2) {
 
     switch (operator) {
         case "+":
-            result = add(number1, number2);
+            result = Math.round(add(number1, number2) * 100) / 100;
         break;
 
         case "-":
-            result = substract(number1, number2);
+            result = Math.round(substract(number1, number2) * 100) / 100;
         break;
 
         case "*":
-            result = multiply(number1, number2);
+            result = Math.round(multiply(number1, number2) * 100) / 100;
         break;
 
         case "/":
-            result = divide(number1, number2);
+            result = Math.round(divide(number1, number2) * 100) / 100;
         break
     }
 
+    let operations = document.querySelector(".operations_history>p").innerHTML;
+    document.querySelector(".operations_history>p").innerHTML = operations + "" + number1 + " " + operator + " " + number2 + " = " + result + "<br>";
     return result;
 }
 
+function sequenceOperation (firstNumber) {
+
+    let findSecondNumber = document.querySelector(".display_operate").textContent;
+    let operatorPosition;
+
+    if (findSecondNumber.indexOf("+") != -1) {
+
+        operatorPosition = findSecondNumber.indexOf("+");
+        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
+        document.querySelector(".display_operate").textContent = operate("+", firstNumber, secondNumber);
+
+    } else if (findSecondNumber.indexOf("-")!= -1) {
+
+        operatorPosition = findSecondNumber.indexOf("-");
+        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
+        document.querySelector(".display_operate").textContent = operate("-", firstNumber, secondNumber);
+        
+    } else if (findSecondNumber.indexOf("/")!= -1) {
+
+        operatorPosition = findSecondNumber.indexOf("/");
+        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
+        document.querySelector(".display_operate").textContent = operate("/", firstNumber, secondNumber);
+
+    } else if (findSecondNumber.indexOf("*")!= -1) {
+        
+        operatorPosition = findSecondNumber.indexOf("*");
+        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
+        document.querySelector(".display_operate").textContent = operate("*", firstNumber, secondNumber);
+
+    }
+}
 function updateDisplay (number) { 
 
     if (calcul === false) {
@@ -63,9 +96,11 @@ let firstNumber, secondNumber, operator, resultat;
 
 let calcul = false;
 
-let zero = document.querySelector(".zero"), one = document.querySelector(".one"), two = document.querySelector(".two"), three = document.querySelector, four = document.querySelector(".four"), five = document.querySelector(".five"), six = document.querySelector(".six"), seven = document.querySelector(".seven"), eight = document.querySelector(".eight"), nine = document.querySelector(".nine");
+let zero = document.querySelector(".zero"), one = document.querySelector(".one"), two = document.querySelector(".two"), three = document.querySelector(".three"), four = document.querySelector(".four"), five = document.querySelector(".five"), six = document.querySelector(".six"), seven = document.querySelector(".seven"), eight = document.querySelector(".eight"), nine = document.querySelector(".nine");
 
-let adding = document.querySelector(".adding"), subtracting = document.querySelector(".subtracting"), multiplying = document.querySelector(".multiplying"), dividing = document.querySelector(".dividing");
+let adding = document.querySelector(".adding"), substracting = document.querySelector(".substracting"), multiplicating = document.querySelector(".multiplicating"), dividing = document.querySelector(".dividing");
+
+let suppression = document.querySelector(".delete");
 
 let egal = document.querySelector(".egal");
 
@@ -115,14 +150,54 @@ nine.addEventListener("click", function () {
     updateDisplay (9);
 });
 
+suppression.addEventListener("click", function () { 
+
+    let supChar = document.querySelector(".display_operate").textContent;
+
+    supChar = supChar.substring(0, supChar.length - 1);
+
+    if (supChar.length == 0) {
+        document.querySelector(".display_operate").textContent = "0";
+    } else {
+
+        document.querySelector(".display_operate").textContent = supChar;
+    }
+    
+});
+
 adding.addEventListener("click", function () { 
     
     if (calcul === true) {
 
-        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-        operator = "+";
-        updateDisplay ("+");
-    }
+        let temporaryDisplay = document.querySelector(".display_operate").textContent;
+
+        if (temporaryDisplay.indexOf("+")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("+")));
+
+        } else if(temporaryDisplay.indexOf("-")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("-")));
+
+        } else if(temporaryDisplay.indexOf("/")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("/")));
+
+        } else if (temporaryDisplay.indexOf("*")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("*")));
+
+        }
+
+            sequenceOperation(firstNumber);
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            updateDisplay("+");
+                        
+        } else {
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            operator = "+";
+            updateDisplay ("+");
+        }
 
 });
 
@@ -130,62 +205,108 @@ substracting.addEventListener("click", function () {
 
     if (calcul === true) {
 
-        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-        operator = "-";
-        updateDisplay ("-");
-    }
+        let temporaryDisplay = document.querySelector(".display_operate").textContent;
+
+        if (temporaryDisplay.indexOf("+")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("+")));
+
+        } else if(temporaryDisplay.indexOf("-")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("-")));
+
+        } else if(temporaryDisplay.indexOf("/")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("/")));
+
+        } else if (temporaryDisplay.indexOf("*")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("*")));
+
+        }
+            sequenceOperation(firstNumber);
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            updateDisplay("-");
+                        
+        } else {
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            operator = "-";
+            updateDisplay ("-");
+        }
 });
 
 dividing.addEventListener("click", function () { 
 
     if (calcul === true) {
 
-        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-        operator = "/";
-        updateDisplay ("/");
+        let temporaryDisplay = document.querySelector(".display_operate").textContent;
+
+        if (temporaryDisplay.indexOf("+")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("+")));
+
+        } else if(temporaryDisplay.indexOf("-")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("-")));
+
+        } else if(temporaryDisplay.indexOf("/")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("/")));
+
+        } else if (temporaryDisplay.indexOf("*")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("*")));
+
+        }
+            sequenceOperation(firstNumber);
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            updateDisplay("/");
+                        
+        } else {
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            operator = "/";
+            updateDisplay ("/");
         }
 });
 
 multiplicating.addEventListener("click", function () { 
 
     if (calcul === true) {
-        firstNumber = parseInt(document.querySelector(".display_operate").textContent);
-        operator = "*";
-        updateDisplay ("*");
-    }
+
+        let temporaryDisplay = document.querySelector(".display_operate").textContent;
+
+        if (temporaryDisplay.indexOf("+")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("+")));
+
+        } else if(temporaryDisplay.indexOf("-")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("-")));
+
+        } else if(temporaryDisplay.indexOf("/")!= -1) {
+
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("/")));
+
+        } else if (temporaryDisplay.indexOf("*")!= -1) {
+            
+            firstNumber = parseInt(temporaryDisplay.substring(0, temporaryDisplay.indexOf("*")));
+
+        }
+            sequenceOperation(firstNumber);
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            updateDisplay("*");
+                        
+        } else {
+            firstNumber = parseInt(document.querySelector(".display_operate").textContent);
+            operator = "-";
+            updateDisplay ("*");
+        }
 
 });
 
 egal.addEventListener("click", function () { 
     
-    let findSecondNumber = document.querySelector(".display_operate").textContent;
-    let operatorPosition;
-
-    if (findSecondNumber.indexOf("+") != -1) {
-
-        operatorPosition = findSecondNumber.indexOf("+");
-        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
-        document.querySelector(".display_operate").textContent = operate("+", firstNumber, secondNumber);
-
-    } else if (findSecondNumber.indexOf("-")!= -1) {
-
-        operatorPosition = findSecondNumber.indexOf("-");
-        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
-        document.querySelector(".display_operate").textContent = operate("-", firstNumber, secondNumber);
-        
-    } else if (findSecondNumber.indexOf("/")!= -1) {
-
-        operatorPosition = findSecondNumber.indexOf("/");
-        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
-        document.querySelector(".display_operate").textContent = operate("/", firstNumber, secondNumber);
-
-    } else if (findSecondNumber.indexOf("*")!= -1) {
-        
-        operatorPosition = findSecondNumber.indexOf("*");
-        secondNumber = parseInt(findSecondNumber.substring(operatorPosition + 1));
-        document.querySelector(".display_operate").textContent = operate("*", firstNumber, secondNumber);
-
-    }
+    sequenceOperation(firstNumber);
 
     calcul = false;
 });
@@ -196,6 +317,7 @@ clear.addEventListener("click", function () {
     operator = "";
     calcul = false;
     document.querySelector(".display_operate").textContent = "0";
+    document.querySelector(".operations_history>p").textContent = "";
  });
 
 /* FIN DE DECLARATION DES EVENT LISTENERS */

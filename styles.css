@@ -5,9 +5,10 @@ html, body {
 
 body {
     display: flex;
-    justify-content: center;
+    align-items: center;
     margin-top: 75px;
     background-color: #528792;
+    flex-direction: column;
 }
 .calculator {
     border: 1px solid #FAF8F8;
@@ -54,7 +55,19 @@ body {
     margin: 5px;
     text-align: center;
     vertical-align: center;
-    border-radius: 5px
+    border-radius: 5px;
+}
+.delete, .clear {
+    display: flex;
+    color: #79B8C6;
+    background-color: #FAF8F8;
+    border: 1px solid #FAF8F8;
+    height: 68px;
+    width: 45%;
+    margin: 5px;
+    border-radius: 5px;;
+    text-align: center;
+    vertical-align: center;
 }
 .elts:hover {
     background-color: #79B8C6;
@@ -62,3 +75,4 @@ body {
     cursor: pointer;
     box-shadow: 0px 0px 5px 5px #FFFFFF inset;
 }
+

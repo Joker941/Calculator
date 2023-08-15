@@ -1,4 +1,7 @@
-Lors du clic sur un opérateur : 
-    Vérifier si un opérateur est déjà présent dans le display
-    Si non, on continue
-    Si oui, effectuer l'opération et affecter le résultat en tant que premier nombre
+Ajouter la possibilité de faire l'opération avec le clavier
+
+Ajouter l'historique des opérations et l'effacer quand on tape sur clear > fait !
+
+Ajouter la gestion des décimales
+
+Ajouter un bouton delete 
