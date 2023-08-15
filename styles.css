@@ -5,10 +5,10 @@ html, body {
 
 body {
     display: flex;
-    align-items: center;
+    justify-content: center;
     margin-top: 75px;
     background-color: #528792;
-    flex-direction: column;
+    flex-direction: row;
 }
 .calculator {
     border: 1px solid #FAF8F8;
@@ -75,4 +75,21 @@ body {
     cursor: pointer;
     box-shadow: 0px 0px 5px 5px #FFFFFF inset;
 }
+
+.operations_history {
+    border: 1px solid #FAF8F8;
+    background-color: #2E5F82;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    width: 325px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 0 50px #FFFFFF;
+    color: #FAF8F8;
+    font-size: 20px;
+}
+
 
